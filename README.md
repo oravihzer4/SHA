@@ -32,6 +32,7 @@ npm run preview
 
 ## Media & branding
 
+- **PDF and MP4** files under `media/` are listed in `.gitignore` because GitHub rejects blobs over **100 MB** and warns above **50 MB**. Keep them on your machine or host them elsewhere (Drive, Dropbox, [Git LFS](https://git-lfs.github.com), or a CDN). The landing app does not require them to run.
 - Raster assets live in **`/media`** at the project root. They are discovered via `import.meta.glob` in `src/config/assets.ts` and imported explicitly where needed (e.g. logos in `src/config/branding.ts`).
 - Update **`WHATSAPP_NUMBER`** in `src/config/branding.ts` with your business number (country code, no `+`).
 - The contact form is a **front-end demo**; wire `onSubmit` to your API, [Formspree](https://formspree.io), or email service.
