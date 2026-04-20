@@ -1,4 +1,5 @@
-import "./OptimizedImage.module.css";
+import { useState } from "react";
+import styles from "./OptimizedImage.module.css";
 
 type Props = {
   src: string;
@@ -17,6 +18,9 @@ export function OptimizedImage({
   priority = false,
   modernSrc,
 }: Props) {
+  const [loaded, setLoaded] = useState(false);
+  const mergedClassName = `${styles.imageBase} ${loaded ? styles.imageLoaded : ""} ${className ?? ""}`.trim();
+
   if (modernSrc) {
     return (
       <picture>
@@ -24,9 +28,10 @@ export function OptimizedImage({
         <img
           src={src}
           alt={alt}
-          className={className}
+          className={mergedClassName}
           loading={priority ? "eager" : "lazy"}
           decoding="async"
+          onLoad={() => setLoaded(true)}
         />
       </picture>
     );
@@ -36,9 +41,10 @@ export function OptimizedImage({
     <img
       src={src}
       alt={alt}
-      className={className}
+      className={mergedClassName}
       loading={priority ? "eager" : "lazy"}
       decoding="async"
+      onLoad={() => setLoaded(true)}
     />
   );
 }

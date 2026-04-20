@@ -168,3 +168,14 @@ export const PORTFOLIO_CATEGORIES: readonly PortfolioCategory[] = categoryOrder.
   iconSrc: categoryMeta[id].iconSrc,
   projects: hasFolderProjects ? folderProjects[id] : fallbackProjects[id],
 }));
+
+export function getPortfolioProjectById(projectId: string): {
+  category: PortfolioCategory;
+  project: PortfolioProject;
+} | null {
+  for (const category of PORTFOLIO_CATEGORIES) {
+    const project = category.projects.find((p) => p.id === projectId);
+    if (project) return { category, project };
+  }
+  return null;
+}

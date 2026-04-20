@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import {
   PORTFOLIO_CATEGORIES,
@@ -14,10 +14,6 @@ export function Portfolio() {
   const reduce = useReducedMotion();
   const [selectedCategoryId, setSelectedCategoryId] =
     useState<PortfolioCategoryId>("residential");
-  const [activeProject, setActiveProject] = useState<PortfolioProject | null>(
-    null,
-  );
-  const [activeImage, setActiveImage] = useState(0);
 
   const selectedCategory = useMemo<PortfolioCategory>(
     () =>
@@ -27,47 +23,8 @@ export function Portfolio() {
   );
 
   const openProject = (project: PortfolioProject) => {
-    setActiveProject(project);
-    setActiveImage(0);
+    window.location.hash = `#/project/${encodeURIComponent(project.id)}`;
   };
-
-  const close = useCallback(() => {
-    setActiveProject(null);
-    setActiveImage(0);
-  }, []);
-
-  const total = activeProject?.images.length ?? 0;
-  const open = Boolean(activeProject && total > 0);
-
-  const goPrev = useCallback(() => {
-    if (!activeProject || total === 0) return;
-    setActiveImage((i) => (i - 1 + total) % total);
-  }, [activeProject, total]);
-
-  const goNext = useCallback(() => {
-    if (!activeProject || total === 0) return;
-    setActiveImage((i) => (i + 1) % total);
-  }, [activeProject, total]);
-
-  useEffect(() => {
-    if (!open) return;
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") close();
-      if (e.key === "ArrowLeft") goPrev();
-      if (e.key === "ArrowRight") goNext();
-    };
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [open, close, goPrev, goNext]);
-
-  useEffect(() => {
-    if (!open) return;
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
-  }, [open]);
 
   return (
     <section id="portfolio" className={styles.section}>
@@ -182,123 +139,6 @@ export function Portfolio() {
         </AnimatePresence>
       </div>
 
-      <AnimatePresence>
-        {open && activeProject ? (
-          <motion.div
-            className={styles.backdrop}
-            role="dialog"
-            aria-modal="true"
-            aria-label={`גלריה של ${activeProject.title}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: reduce ? 0 : 0.35 }}
-            onClick={close}
-          >
-            <motion.div
-              className={styles.dialogInner}
-              initial={{ opacity: 0, scale: 0.96, y: 12 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.98, y: 8 }}
-              transition={{
-                duration: reduce ? 0 : 0.4,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button
-                type="button"
-                onClick={close}
-                className={styles.closeBtn}
-                aria-label="סגירת גלריה"
-              >
-                ×
-              </button>
-
-              <h4 className={styles.modalProjectTitle}>
-                {activeProject.title}
-              </h4>
-
-              <div className={styles.carouselWrap}>
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    goPrev();
-                  }}
-                  className={styles.navPrev}
-                  aria-label="תמונה קודמת"
-                >
-                  ‹
-                </button>
-                <button
-                  type="button"
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    goNext();
-                  }}
-                  className={styles.navNext}
-                  aria-label="תמונה הבאה"
-                >
-                  ›
-                </button>
-
-                <div className={styles.slideFrame}>
-                  <AnimatePresence mode="wait" initial={false}>
-                    <motion.div
-                      key={`${activeProject.id}-${activeImage}`}
-                      className={styles.slideMotion}
-                      initial={{ opacity: 0, x: reduce ? 0 : 28 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      exit={{ opacity: 0, x: reduce ? 0 : -28 }}
-                      transition={{
-                        duration: reduce ? 0 : 0.35,
-                        ease: [0.16, 1, 0.3, 1],
-                      }}
-                    >
-                      <OptimizedImage
-                        src={activeProject.images[activeImage]!}
-                        alt={`${activeProject.title} תמונה ${activeImage + 1} מתוך ${total}`}
-                        className={styles.slideImage}
-                      />
-                    </motion.div>
-                  </AnimatePresence>
-                </div>
-              </div>
-
-              <p className={styles.counter}>
-                {activeImage + 1}
-                <span className={styles.counterSep}>/</span>
-                {total}
-              </p>
-
-              {total > 1 ? (
-                <div className={styles.thumbsRow}>
-                  <div className={styles.thumbsTrack}>
-                    {activeProject.images.map((_, i) => (
-                      <button
-                        key={`${activeProject.id}-${i}`}
-                        type="button"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveImage(i);
-                        }}
-                        className={`${styles.thumb} ${
-                          i === activeImage
-                            ? styles.thumbActive
-                            : styles.thumbInactive
-                        }`}
-                        aria-label={`מעבר לתמונה ${i + 1}`}
-                        aria-current={i === activeImage ? "true" : undefined}
-                      />
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-            </motion.div>
-          </motion.div>
-        ) : null}
-      </AnimatePresence>
     </section>
   );
 }

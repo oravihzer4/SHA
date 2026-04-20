@@ -1,8 +1,10 @@
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Navbar } from "@/components/Navbar";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Portfolio } from "@/components/Portfolio";
+import { ProjectDetailPage } from "@/components/ProjectDetailPage";
 import { ScrollThroughSection } from "@/components/ScrollThroughSection";
 import { Services } from "@/components/Services";
 import { Testimonials } from "@/components/Testimonials";
@@ -16,6 +18,19 @@ import styles from "./App.module.css";
 
 export default function App() {
   const reduce = useReducedMotion();
+  const [projectRouteId, setProjectRouteId] = useState<string | null>(null);
+
+  useEffect(() => {
+    const resolveRoute = () => {
+      const raw = window.location.hash || "";
+      const match = raw.match(/^#\/project\/(.+)$/);
+      setProjectRouteId(match?.[1] ? decodeURIComponent(match[1]) : null);
+    };
+
+    resolveRoute();
+    window.addEventListener("hashchange", resolveRoute);
+    return () => window.removeEventListener("hashchange", resolveRoute);
+  }, []);
 
   return (
     <motion.div
@@ -26,13 +41,19 @@ export default function App() {
     >
       <Navbar />
       <main>
-        <Hero />
-        <About />
-        <Portfolio />
-        <ScrollThroughSection />
-        <Services />
-        <Testimonials />
-        <Contact />
+        {projectRouteId ? (
+          <ProjectDetailPage projectId={projectRouteId} />
+        ) : (
+          <>
+            <Hero />
+            <About />
+            <Portfolio />
+            <ScrollThroughSection />
+            <Services />
+            <Testimonials />
+            <Contact />
+          </>
+        )}
       </main>
       <Footer />
       <WhatsAppPopup />

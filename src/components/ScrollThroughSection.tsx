@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import backgroundVideo from "@media/video/video1.mp4";
 import { Button } from "@/components/Button";
@@ -6,6 +6,8 @@ import styles from "./ScrollThroughSection.module.css";
 
 export function ScrollThroughSection() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"],
@@ -15,6 +17,32 @@ export function ScrollThroughSection() {
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
+
+  useEffect(() => {
+    const node = sectionRef.current;
+    if (!node) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting)) {
+          setShouldLoadVideo(true);
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "200px 0px" },
+    );
+    observer.observe(node);
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (shouldLoadVideo) {
+      video.play().catch(() => {});
+    } else {
+      video.pause();
+    }
+  }, [shouldLoadVideo]);
 
   return (
     <section
@@ -28,9 +56,10 @@ export function ScrollThroughSection() {
         aria-hidden
       >
         <video
+          ref={videoRef}
           className={styles.backgroundVideo}
-          src={backgroundVideo}
-          autoPlay
+          src={shouldLoadVideo ? backgroundVideo : undefined}
+          autoPlay={shouldLoadVideo}
           muted
           loop
           playsInline
