@@ -1,0 +1,83 @@
+.section {
+  @apply relative overflow-hidden bg-[var(--color-espresso)] py-24 text-[var(--color-cream)] md:py-32;
+}
+
+.deco {
+  @apply pointer-events-none absolute -left-16 bottom-10 hidden flex-col gap-8 opacity-[0.06] lg:flex;
+}
+
+.decoIcon {
+  @apply h-16 w-16 object-contain;
+}
+
+.inner {
+  @apply relative mx-auto max-w-[1400px] px-6 md:px-10;
+}
+
+.header {
+  @apply mb-12 flex flex-col gap-6 md:flex-row md:items-end md:justify-between;
+}
+
+.eyebrow {
+  @apply font-ui mb-3 text-[0.68rem] font-medium uppercase tracking-[0.32em];
+  color: color-mix(in srgb, var(--color-cream) 55%, transparent);
+}
+
+.title {
+  @apply text-4xl md:text-[2.75rem];
+  font-family: var(--font-display);
+}
+
+.nav {
+  @apply flex gap-3;
+}
+
+.navBtn {
+  @apply flex h-11 w-11 items-center justify-center rounded-full border text-lg transition;
+  border-color: color-mix(in srgb, var(--color-ivory) 28%, transparent);
+}
+.navBtn:hover {
+  background-color: color-mix(in srgb, var(--color-ivory) 12%, transparent);
+}
+
+.quoteWrap {
+  @apply relative min-h-[200px] overflow-hidden md:min-h-[180px];
+}
+
+.blockquote {
+  @apply max-w-3xl;
+}
+
+.quote {
+  @apply text-2xl leading-snug md:text-3xl;
+  font-family: var(--font-display);
+}
+
+.footer {
+  @apply font-ui mt-8 text-[0.75rem] font-medium uppercase tracking-[0.22em];
+  color: color-mix(in srgb, var(--color-cream) 60%, transparent);
+}
+
+.sep {
+  @apply mx-2;
+  color: color-mix(in srgb, var(--color-ivory) 40%, transparent);
+}
+
+.dots {
+  @apply mt-10 flex gap-2;
+}
+
+.dot {
+  @apply h-1 flex-1 max-w-[4rem] rounded-full transition-colors;
+}
+
+.dotActive {
+  @apply bg-[var(--color-cream)];
+}
+
+.dotInactive {
+  background-color: color-mix(in srgb, var(--color-ivory) 22%, transparent);
+}
+.dotInactive:hover {
+  background-color: color-mix(in srgb, var(--color-ivory) 38%, transparent);
+}

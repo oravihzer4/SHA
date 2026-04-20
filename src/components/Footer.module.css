@@ -1,0 +1,88 @@
+.root {
+  @apply border-t border-[var(--color-line)] bg-[var(--color-ivory)];
+}
+
+.inner {
+  @apply mx-auto max-w-[1400px] px-6 py-14 md:px-10 md:py-16;
+}
+
+.columns {
+  @apply mb-12 flex flex-col gap-10 md:mb-14 md:grid md:grid-cols-12 md:gap-8;
+}
+
+.brandCol {
+  @apply md:col-span-3;
+}
+
+.logoBtn {
+  @apply mb-4 block text-left transition-opacity hover:opacity-80;
+}
+
+.logo {
+  @apply h-7 w-auto;
+}
+
+.tagline {
+  @apply max-w-[200px] text-[0.75rem] leading-relaxed text-[var(--color-muted)];
+}
+
+.socialList {
+  @apply mt-5 flex flex-col gap-2;
+}
+
+.socialLink {
+  @apply inline-flex items-center gap-2 text-[0.78rem] text-[var(--color-muted)] transition-colors hover:text-[var(--color-espresso)];
+}
+
+.socialIcon {
+  @apply inline-flex h-4 w-4 items-center justify-center leading-none;
+  color: color-mix(in srgb, var(--color-espresso) 65%, transparent);
+}
+
+.socialIcon svg {
+  @apply h-4 w-4;
+}
+
+.navCol {
+  @apply md:col-span-3;
+}
+
+.navTitle {
+  @apply font-ui mb-4 text-[0.65rem] font-semibold uppercase tracking-[0.26em] text-[var(--color-espresso)];
+}
+
+.navList {
+  @apply flex flex-col gap-2.5;
+}
+
+.navBtn {
+  @apply text-left text-[0.8rem] text-[var(--color-muted)] transition-colors hover:text-[var(--color-espresso)];
+}
+
+.servicesCol {
+  @apply md:col-span-3;
+}
+
+.contactCol {
+  @apply md:col-span-3;
+}
+
+.contactList {
+  @apply flex flex-col gap-3 text-[0.8rem] text-[var(--color-muted)];
+}
+
+.contactLink {
+  @apply transition-colors hover:text-[var(--color-espresso)];
+}
+
+.contactBtn {
+  @apply text-left transition-colors hover:text-[var(--color-espresso)];
+}
+
+.bottom {
+  @apply border-t border-[var(--color-line)] pt-8;
+}
+
+.copyright {
+  @apply font-ui text-[0.68rem] uppercase tracking-[0.18em] text-[var(--color-muted)];
+}

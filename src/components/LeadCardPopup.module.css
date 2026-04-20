@@ -1,0 +1,80 @@
+.overlay {
+  @apply fixed inset-0 z-[110] flex items-center justify-center p-4;
+  background: color-mix(in srgb, var(--color-espresso) 38%, transparent);
+  backdrop-filter: blur(4px);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  width: min(92vw, 760px);
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-espresso) 16%, transparent);
+  background: color-mix(in srgb, var(--color-ivory) 96%, transparent);
+  box-shadow: 0 22px 58px color-mix(in srgb, var(--color-espresso) 22%, transparent);
+}
+
+.photo {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+}
+
+.content {
+  @apply p-5 md:p-7;
+}
+
+.eyebrow {
+  @apply m-0 text-[0.62rem] uppercase tracking-[0.24em];
+  color: var(--color-muted);
+}
+
+.title {
+  @apply mt-2 mb-4 text-xl leading-tight md:text-2xl;
+  color: var(--color-espresso);
+}
+
+.form {
+  @apply grid gap-2.5;
+}
+
+.field {
+  @apply h-11 w-full px-3 text-sm;
+  border: 1px solid var(--color-line);
+  background: color-mix(in srgb, var(--color-ivory) 98%, white);
+  color: var(--color-espresso);
+}
+
+.field:focus {
+  outline: 1px solid color-mix(in srgb, var(--color-espresso) 20%, transparent);
+}
+
+.submit {
+  @apply mt-1 h-11 px-4 text-[0.62rem] uppercase tracking-[0.22em];
+  border: 1px solid var(--color-espresso);
+  background: var(--color-espresso);
+  color: var(--color-ivory);
+}
+
+.submit:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.close {
+  @apply absolute right-3 top-3 h-8 w-8 text-lg;
+  border: 1px solid color-mix(in srgb, var(--color-espresso) 24%, transparent);
+  background: color-mix(in srgb, var(--color-ivory) 85%, transparent);
+  color: var(--color-espresso);
+}
+
+@media (min-width: 900px) {
+  .card {
+    grid-template-columns: minmax(260px, 42%) 1fr;
+  }
+
+  .photo {
+    height: 100%;
+    min-height: 340px;
+  }
+}

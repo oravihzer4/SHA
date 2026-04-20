@@ -1,82 +1,165 @@
-import { useState, type FormEvent } from 'react'
-import { motion } from 'framer-motion'
-import { WHATSAPP_NUMBER } from '@/config/branding'
-import { brandIcons } from '@/config/assets'
-import { Reveal } from '@/components/Reveal'
+import { useRef, useState, type FormEvent } from "react";
+import { motion } from "framer-motion";
+import toast from "react-hot-toast";
+import { CONTACT_EMAIL, WHATSAPP_NUMBER } from "@/config/branding";
+import { brandIcons } from "@/config/assets";
+import { Reveal } from "@/components/Reveal";
+import styles from "./Contact.module.css";
 
 const waHref = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-  'Hello SHA — I would love to discuss a new project.',
-)}`
+  "היי SHA, אשמח לדבר על פרויקט חדש.",
+)}`;
+const SUBMIT_INTERVAL_MS = 15_000;
+const MAX_NAME_LEN = 80;
+const MAX_EMAIL_LEN = 120;
+const MAX_MESSAGE_LEN = 2000;
+
+function sanitizeText(value: string): string {
+  return value
+    .replace(/[<>]/g, "")
+    .replace(/[\u0000-\u001F\u007F]/g, "")
+    .trim();
+}
+
+function isValidEmail(value: string): boolean {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
 
 export function Contact() {
-  const [sent, setSent] = useState(false)
+  const [isSending, setIsSending] = useState(false);
+  const mountedAtRef = useRef<number>(Date.now());
 
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    setSent(true)
-    window.setTimeout(() => setSent(false), 4000)
-  }
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const now = Date.now();
+    const name = sanitizeText(String(data.get("name") ?? "")).slice(
+      0,
+      MAX_NAME_LEN,
+    );
+    const email = sanitizeText(String(data.get("email") ?? "")).slice(
+      0,
+      MAX_EMAIL_LEN,
+    );
+    const message = sanitizeText(String(data.get("message") ?? "")).slice(
+      0,
+      MAX_MESSAGE_LEN,
+    );
+    const antiSpam = String(data.get("_honey") ?? "").trim();
+    if (antiSpam) return;
 
-  const deco = brandIcons.slice(0, 4)
+    if (now - mountedAtRef.current < 1500) {
+      toast.error("נראה שהטופס נשלח מהר מדי. נסו שוב בעוד רגע.");
+      return;
+    }
+
+    const lastSubmit = Number(
+      window.localStorage.getItem("sha-last-contact-submit") ?? 0,
+    );
+    if (lastSubmit && now - lastSubmit < SUBMIT_INTERVAL_MS) {
+      toast.error("כבר נשלחה פנייה לאחרונה. נסו שוב בעוד כמה שניות.");
+      return;
+    }
+
+    if (!name || name.length < 2) {
+      toast.error("אנא מלאו שם מלא תקין.");
+      return;
+    }
+    if (!email || !isValidEmail(email)) {
+      toast.error("אנא מלאו כתובת אימייל תקינה.");
+      return;
+    }
+    if (!message || message.length < 8) {
+      toast.error("אנא הוסיפו מעט יותר פרטים על הפרויקט.");
+      return;
+    }
+
+    setIsSending(true);
+    const toastId = toast.loading("שולח את הפנייה...");
+    try {
+      const payload = new FormData();
+      payload.append("name", name);
+      payload.append("email", email);
+      payload.append("message", message);
+      payload.append("_subject", `פנייה חדשה מאת ${name || "מבקר באתר"}`);
+      payload.append("_captcha", "false");
+      payload.append("_template", "table");
+
+      const res = await fetch(`https://formsubmit.co/ajax/${CONTACT_EMAIL}`, {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: payload,
+      });
+
+      if (!res.ok) {
+        throw new Error("שליחת הפנייה נכשלה");
+      }
+
+      form.reset();
+      window.localStorage.setItem("sha-last-contact-submit", String(now));
+      toast.success("הפנייה נשלחה בהצלחה. נחזור אליכם בהקדם.", {
+        id: toastId,
+      });
+    } catch {
+      toast.error("לא ניתן לשלוח כרגע. אפשר לפנות בוואטסאפ או במייל.", {
+        id: toastId,
+      });
+    } finally {
+      setIsSending(false);
+    }
+  };
+
+  const deco = brandIcons.slice(0, 4);
 
   return (
-    <section
-      id="contact"
-      className="relative overflow-hidden border-t border-[var(--color-line)] bg-[var(--color-cream)] py-24 md:py-32"
-    >
-      <div className="pointer-events-none absolute -right-20 top-20 flex gap-6 opacity-[0.07]">
+    <section id="contact" className={styles.section}>
+      <div className={styles.deco}>
         {deco.map((src) => (
-          <img key={src} src={src} alt="" className="h-24 w-24 object-contain" />
+          <img key={src} src={src} alt="" className={styles.decoIcon} />
         ))}
       </div>
 
-      <div className="relative mx-auto grid max-w-[1400px] gap-16 px-6 md:grid-cols-12 md:gap-12 md:px-10">
-        <Reveal className="md:col-span-5" as="div">
-          <p className="mb-3 text-[0.68rem] font-medium uppercase tracking-[0.32em] text-[var(--color-muted)]">
-            Contact
-          </p>
-          <h2 className="mb-6 font-serif text-4xl text-[var(--color-espresso)] md:text-[2.75rem]">
-            Begin a conversation
-          </h2>
-          <p className="mb-10 text-[var(--color-muted)]">
-            Share a few details about your space. We reply thoughtfully — typically within two
-            business days.
+      <div className={styles.layout}>
+        <Reveal className={styles.colIntro} as="div">
+          <p className={styles.eyebrow}>צור קשר</p>
+          <h2 className={styles.title}>בואו נתחיל שיחה</h2>
+          <p className={styles.lead}>
+            שתפו כמה פרטים על החלל שלכם. נחזור אליכם בהקדם, לרוב עד שני ימי
+            עסקים.
           </p>
           <motion.a
             href={waHref}
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-3 rounded-full border border-[var(--color-espresso)]/20 bg-white/60 px-6 py-3 text-[0.72rem] font-semibold uppercase tracking-[0.22em] text-[var(--color-espresso)] shadow-sm transition hover:border-[var(--color-espresso)]/40 hover:bg-white"
+            className={styles.waLink}
             whileHover={{ y: -2 }}
             whileTap={{ scale: 0.98 }}
           >
-            <span className="text-lg" aria-hidden>
+            <span className={styles.waIcon} aria-hidden>
               ✦
             </span>
-            WhatsApp
+            וואטסאפ
           </motion.a>
         </Reveal>
 
-        <Reveal className="md:col-span-6 md:col-start-7" as="div" delay={0.06}>
-          <form
-            onSubmit={onSubmit}
-            className="space-y-6 border border-[var(--color-line)] bg-white/50 p-8 shadow-[var(--shadow-soft)] backdrop-blur-sm md:p-10"
-          >
+        <Reveal className={styles.colForm} as="div" delay={0.06}>
+          <form onSubmit={onSubmit} className={styles.form}>
             <div>
-              <label htmlFor="name" className="mb-2 block text-[0.65rem] uppercase tracking-[0.2em] text-[var(--color-muted)]">
-                Name
+              <label htmlFor="name" className={styles.label}>
+                שם מלא
               </label>
               <input
                 id="name"
                 name="name"
                 required
                 autoComplete="name"
-                className="w-full border-b border-[var(--color-espresso)]/15 bg-transparent py-2 text-[var(--color-espresso)] outline-none transition focus:border-[var(--color-espresso)]"
+                className={styles.field}
               />
             </div>
             <div>
-              <label htmlFor="email" className="mb-2 block text-[0.65rem] uppercase tracking-[0.2em] text-[var(--color-muted)]">
-                Email
+              <label htmlFor="email" className={styles.label}>
+                אימייל
               </label>
               <input
                 id="email"
@@ -84,39 +167,38 @@ export function Contact() {
                 type="email"
                 required
                 autoComplete="email"
-                className="w-full border-b border-[var(--color-espresso)]/15 bg-transparent py-2 text-[var(--color-espresso)] outline-none transition focus:border-[var(--color-espresso)]"
+                className={styles.field}
               />
             </div>
             <div>
-              <label htmlFor="message" className="mb-2 block text-[0.65rem] uppercase tracking-[0.2em] text-[var(--color-muted)]">
-                Project notes
+              <label htmlFor="message" className={styles.label}>
+                פרטי הפרויקט
               </label>
               <textarea
                 id="message"
                 name="message"
-                rows={4}
+                rows={1}
                 required
-                className="w-full resize-none border-b border-[var(--color-espresso)]/15 bg-transparent py-2 text-[var(--color-espresso)] outline-none transition focus:border-[var(--color-espresso)]"
+                className={styles.field}
               />
             </div>
+            <input
+              type="text"
+              name="_honey"
+              className="sr-only"
+              tabIndex={-1}
+              autoComplete="off"
+            />
             <button
               type="submit"
-              className="w-full bg-[var(--color-espresso)] py-4 text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-[var(--color-cream)] transition hover:bg-[var(--color-espresso-soft)]"
+              className={styles.submit}
+              disabled={isSending}
             >
-              Send inquiry
+              {isSending ? "שולח..." : "שליחה במייל"}
             </button>
-            {sent ? (
-              <p className="text-center text-sm text-[var(--color-muted)]" role="status">
-                Thank you — this demo captures your message locally. Connect{' '}
-                <a href={waHref} className="underline underline-offset-4">
-                  WhatsApp
-                </a>{' '}
-                or wire the form to your backend.
-              </p>
-            ) : null}
           </form>
         </Reveal>
       </div>
     </section>
-  )
+  );
 }

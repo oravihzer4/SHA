@@ -1,0 +1,7 @@
+/**
+ * Reveal — scroll animation lives in the component.
+ * Add layout overrides here when you need section-specific defaults.
+ */
+.root {
+  min-height: 0;
+}

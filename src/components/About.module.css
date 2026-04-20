@@ -1,0 +1,41 @@
+.section {
+  @apply border-t border-[var(--color-line)] bg-[var(--color-ivory)] py-24 md:py-32;
+}
+
+.layout {
+  @apply mx-auto grid max-w-[1400px] gap-14 px-6 md:grid-cols-12 md:gap-10 md:px-10;
+}
+
+.colImage {
+  @apply md:col-span-5;
+}
+
+.imageStack {
+  @apply relative;
+}
+
+.primaryImage {
+  @apply aspect-[3/4] w-full object-cover shadow-[var(--shadow-soft)];
+  opacity: 70%;
+}
+
+.accentIcon {
+  @apply absolute -left-4 top-8 w-16 opacity-40 md:w-20;
+}
+
+.colCopy {
+  @apply flex flex-col justify-center md:col-span-6 md:col-start-7;
+}
+
+.eyebrow {
+  @apply font-ui mb-4 text-[0.68rem] font-medium uppercase tracking-[0.32em] text-[var(--color-muted)];
+}
+
+.title {
+  @apply mb-8 text-4xl text-[var(--color-espresso)] md:text-[2.75rem];
+  font-family: var(--font-display);
+}
+
+.body {
+  @apply space-y-6 text-[var(--color-muted)];
+}

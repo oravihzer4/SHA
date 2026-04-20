@@ -1,12 +1,14 @@
+import "./OptimizedImage.module.css";
+
 type Props = {
-  src: string
-  alt: string
-  className?: string
+  src: string;
+  alt: string;
+  className?: string;
   /** First screen / LCP candidate */
-  priority?: boolean
+  priority?: boolean;
   /** Optional WebP (or AVIF) URL — add via build pipeline if desired */
-  modernSrc?: string
-}
+  modernSrc?: string;
+};
 
 export function OptimizedImage({
   src,
@@ -23,12 +25,11 @@ export function OptimizedImage({
           src={src}
           alt={alt}
           className={className}
-          loading={priority ? 'eager' : 'lazy'}
+          loading={priority ? "eager" : "lazy"}
           decoding="async"
-          fetchPriority={priority ? 'high' : 'auto'}
         />
       </picture>
-    )
+    );
   }
 
   return (
@@ -36,9 +37,8 @@ export function OptimizedImage({
       src={src}
       alt={alt}
       className={className}
-      loading={priority ? 'eager' : 'lazy'}
+      loading={priority ? "eager" : "lazy"}
       decoding="async"
-      fetchPriority={priority ? 'high' : 'auto'}
     />
-  )
+  );
 }

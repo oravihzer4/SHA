@@ -1,47 +1,47 @@
 export const services = [
   {
-    title: 'Concept & spatial planning',
-    body: 'Layout, flow, and proportion shaped around how you live — calm, considered, and enduring.',
+    title: 'קונספט ותכנון חלל',
+    body: 'תכנון פריסה, זרימה ופרופורציות סביב אורח החיים שלכם — מדויק, רגוע ועל-זמני.',
   },
   {
-    title: 'Materials & finishes',
-    body: 'Layered palettes of stone, timber, textile, and light with tactile depth and quiet contrast.',
+    title: 'חומרים וגמרים',
+    body: 'פלטות שכבתיות של אבן, עץ, טקסטיל ואור — עם עומק חומרי וקונטרסט מאוזן.',
   },
   {
-    title: 'Furniture & styling',
-    body: 'Curated pieces and bespoke moments that anchor each room without excess.',
+    title: 'ריהוט והלבשת חלל',
+    body: 'אוצרות פריטים ורגעים מותאמים אישית שמעגנים כל חלל בלי עומס מיותר.',
   },
   {
-    title: 'Lighting design',
-    body: 'Atmosphere through gradation: architectural fixtures, accents, and natural rhythm.',
+    title: 'תכנון תאורה',
+    body: 'יצירת אווירה דרך שכבות תאורה: תאורה אדריכלית, הדגשות וקצב טבעי.',
   },
   {
-    title: 'Project coordination',
-    body: 'A single refined thread from sketches to site — timelines, craftspeople, and detail.',
+    title: 'ניהול ותיאום פרויקט',
+    body: 'קו ניהולי אחד מהסקיצה ועד לשטח — לוחות זמנים, בעלי מקצוע וירידה לפרטים.',
   },
   {
-    title: 'Bespoke joinery',
-    body: 'Custom storage and architectural elements built to measure for seamless integration.',
+    title: 'נגרות בהתאמה אישית',
+    body: 'פתרונות אחסון ואלמנטים אדריכליים מותאמים למידה לשילוב מושלם בחלל.',
   },
 ] as const
 
 export const testimonials = [
   {
     quote:
-      'SHA translated our home into something editorial yet deeply livable. Every corner feels intentional.',
-    name: 'Maya R.',
-    role: 'Residential client',
+      'SHA הפכו את הבית שלנו לחלל אלגנטי ומדויק, ועדיין חם ונעים לחיים יומיומיים. כל פינה מרגישה מחושבת.',
+    name: 'מאיה ר.',
+    role: 'לקוחה פרטית',
   },
   {
     quote:
-      'Shani’s eye for proportion and restraint elevated our workspace. The studio was calm from day one.',
-    name: 'Daniel K.',
-    role: 'Commercial client',
+      'העין של שני לפרופורציות ולאיפוק עיצובי שדרגה את סביבת העבודה שלנו. החלל הרגיש נכון מהיום הראשון.',
+    name: 'דניאל ק.',
+    role: 'לקוח עסקי',
   },
   {
     quote:
-      'Understated luxury — exactly what we wanted. The process felt as refined as the outcome.',
-    name: 'Noa & Eli',
-    role: 'Penthouse renovation',
+      'יוקרה מאופקת — בדיוק מה שחיפשנו. התהליך כולו היה מדויק ונעים כמו התוצאה הסופית.',
+    name: 'נועה ואלי',
+    role: 'שיפוץ פנטהאוז',
   },
 ] as const

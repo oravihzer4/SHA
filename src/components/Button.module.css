@@ -1,0 +1,25 @@
+.base {
+  @apply font-ui inline-flex items-center justify-center gap-2 px-8 py-3.5 text-[0.7rem] font-medium uppercase tracking-[0.28em] transition-colors duration-500;
+}
+
+.primary {
+  @apply bg-[var(--color-espresso)] text-[var(--color-cream)] hover:bg-[var(--color-espresso-soft)];
+}
+
+.ghost {
+  @apply border text-[var(--color-cream)];
+  border-color: color-mix(in srgb, var(--color-ivory) 35%, transparent);
+}
+.ghost:hover {
+  background-color: color-mix(in srgb, var(--color-ivory) 12%, transparent);
+}
+
+.outline {
+  @apply border text-[var(--color-espresso)] transition-colors;
+  border-color: color-mix(in srgb, var(--color-espresso) 25%, transparent);
+}
+.outline:hover {
+  border-color: var(--color-espresso);
+  background-color: var(--color-espresso);
+  color: var(--color-cream);
+}

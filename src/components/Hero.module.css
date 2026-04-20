@@ -1,0 +1,71 @@
+.section {
+  @apply relative flex min-h-[100svh] items-end justify-center overflow-hidden bg-[var(--color-espresso)];
+}
+
+.bgWrap {
+  @apply absolute inset-0;
+}
+
+.slidesHost {
+  @apply absolute inset-0;
+}
+
+.slide {
+  @apply absolute inset-0;
+}
+
+.heroImage {
+  @apply h-full min-h-[100svh] w-full object-cover opacity-90;
+}
+
+.gradient {
+  @apply absolute inset-0;
+  background: linear-gradient(
+    to bottom,
+    color-mix(in srgb, var(--color-espresso) 50%, transparent),
+    color-mix(in srgb, var(--color-espresso) 28%, transparent),
+    color-mix(in srgb, var(--color-espresso) 58%, transparent)
+  );
+}
+
+.content {
+  @apply relative z-10 flex w-full max-w-[1400px] flex-col gap-12 px-6 pb-16 pt-[calc(var(--header-height)+4rem)] md:px-10 md:pb-24;
+}
+
+.intro {
+  @apply max-w-3xl;
+}
+
+.logo {
+  @apply mb-10 h-auto w-[min(100%,280px)] brightness-0 invert md:w-[320px];
+}
+
+.tagline {
+  @apply mb-4 text-4xl leading-[1.12] text-[var(--color-cream)] md:text-5xl lg:text-[1.80rem];
+  font-family: var(--font-display);
+}
+
+.phrase {
+  @apply mt-6 max-h-12 w-auto opacity-80 md:max-h-14;
+}
+
+.actions {
+  @apply flex flex-wrap gap-4;
+}
+
+.ctaPrimary {
+  background-color: var(--color-cream) !important;
+  color: var(--color-espresso) !important;
+}
+.ctaPrimary:hover {
+  background-color: var(--color-ivory) !important;
+}
+
+.scrollHint {
+  @apply absolute bottom-8 left-1/2 hidden -translate-x-1/2 md:block;
+}
+
+.scrollLine {
+  @apply h-12 w-px;
+  background-color: color-mix(in srgb, var(--color-cream) 50%, transparent);
+}

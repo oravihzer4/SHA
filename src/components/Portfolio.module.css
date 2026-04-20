@@ -1,0 +1,264 @@
+.section {
+  @apply bg-[var(--color-cream)] py-24 md:py-32;
+}
+
+.inner {
+  @apply mx-auto max-w-[1400px] px-6 md:px-10;
+}
+
+.intro {
+  @apply mb-12 max-w-xl;
+}
+
+.eyebrow {
+  @apply font-ui mb-3 text-[0.68rem] font-medium uppercase tracking-[0.32em] text-[var(--color-muted)];
+}
+
+.title {
+  @apply text-4xl text-[var(--color-espresso)] md:text-[2.75rem];
+  font-family: var(--font-display);
+}
+
+.lead {
+  @apply mt-4 text-[var(--color-muted)];
+}
+
+.options {
+  @apply mb-10 grid gap-3 md:grid-cols-3;
+}
+
+.optionBtn {
+  @apply border px-4 py-4 text-left transition-all duration-300 md:px-5;
+  border-color: color-mix(in srgb, var(--color-espresso) 16%, transparent);
+  color: var(--color-espresso);
+  background: color-mix(in srgb, var(--color-ivory) 62%, transparent);
+  transform: translateY(0);
+}
+
+.optionBtn:hover {
+  border-color: color-mix(in srgb, var(--color-espresso) 34%, transparent);
+  transform: translateY(-2px);
+}
+
+.optionBtnActive {
+  background: var(--color-espresso);
+  color: var(--color-cream);
+  border-color: var(--color-espresso);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 28px
+    color-mix(in srgb, var(--color-espresso) 24%, transparent);
+}
+
+.optionContent {
+  @apply inline-flex items-center gap-3;
+}
+
+.optionIcon {
+  width: 1.45rem;
+  height: 1.45rem;
+  object-fit: contain;
+  opacity: 0.95;
+  filter: brightness(0) saturate(100%);
+  transition:
+    filter 220ms ease,
+    opacity 220ms ease;
+}
+
+.optionText {
+  @apply inline-flex flex-col gap-1;
+}
+
+.optionTitle {
+  @apply text-lg leading-none;
+  font-family: var(--font-display);
+}
+
+.optionHint {
+  @apply font-ui text-[0.58rem] uppercase tracking-[0.2em];
+  color: color-mix(in srgb, currentColor 72%, transparent);
+}
+
+.optionBtnActive .optionHint {
+  color: color-mix(in srgb, var(--color-cream) 72%, transparent);
+}
+
+.optionBtnActive .optionIcon {
+  /* Negative/inverse look on dark active card */
+  filter: brightness(0) invert(1);
+}
+
+.categoryPanel {
+  @apply scroll-mt-28;
+}
+
+.categoryHead {
+  @apply mb-8 max-w-2xl;
+}
+
+.categoryTitle {
+  @apply mb-3 text-2xl text-[var(--color-espresso)] md:text-3xl;
+  font-family: var(--font-display);
+}
+
+.categoryDescription {
+  @apply text-sm leading-relaxed text-[var(--color-muted)] md:text-base;
+}
+
+.categoryEmpty {
+  @apply rounded-sm border border-dashed border-[var(--color-line)] px-6 py-12 text-center text-sm text-[var(--color-muted)];
+  background-color: color-mix(in srgb, var(--color-ivory) 40%, transparent);
+}
+
+.categoryEmptyCode {
+  @apply font-ui ml-1 text-[0.75rem] text-[var(--color-espresso)];
+}
+
+.projectsGrid {
+  @apply grid gap-5 sm:grid-cols-2 lg:grid-cols-3;
+}
+
+.projectCardWrap {
+  @apply h-full;
+}
+
+.projectCard {
+  @apply flex h-full w-full flex-col overflow-hidden border border-[var(--color-line)] text-left;
+  background-color: color-mix(in srgb, var(--color-ivory) 50%, transparent);
+}
+
+.projectCoverWrap {
+  @apply relative aspect-[4/3] overflow-hidden;
+}
+
+.projectCover {
+  @apply h-full w-full object-cover transition-transform duration-[1.1s] ease-[cubic-bezier(0.16,1,0.3,1)];
+}
+
+.projectCard:hover .projectCover {
+  transform: scale(1.03);
+}
+
+.projectOverlay {
+  @apply pointer-events-none absolute inset-0 transition-colors duration-500;
+  background-color: transparent;
+}
+
+.projectCard:hover .projectOverlay {
+  background-color: color-mix(in srgb, var(--color-espresso) 14%, transparent);
+}
+
+.projectEnter {
+  @apply font-ui pointer-events-none absolute bottom-4 left-4 text-[0.65rem] font-medium uppercase tracking-[0.24em] text-[var(--color-ivory)] opacity-0 transition-opacity duration-500;
+}
+
+.projectCard:hover .projectEnter {
+  opacity: 1;
+}
+
+.projectMeta {
+  @apply flex items-center justify-between gap-4 px-4 py-3.5 md:px-5;
+}
+
+.projectTitle {
+  @apply text-lg text-[var(--color-espresso)];
+  font-family: var(--font-display);
+}
+
+.projectCount {
+  @apply font-ui text-[0.62rem] uppercase tracking-[0.2em] text-[var(--color-muted)];
+}
+
+.backdrop {
+  @apply fixed inset-0 z-[100] flex items-center justify-center bg-[var(--color-overlay)] p-4 pt-14 pb-20 md:p-10 md:pb-14;
+}
+
+.dialogInner {
+  @apply relative flex w-full max-w-6xl flex-col items-center;
+}
+
+.closeBtn {
+  @apply absolute -top-1 right-0 z-20 flex h-10 w-10 items-center justify-center rounded-full text-lg text-[var(--color-espresso)] shadow-md transition md:right-2 md:top-0;
+  background-color: color-mix(in srgb, var(--color-ivory) 95%, transparent);
+}
+
+.closeBtn:hover {
+  background-color: var(--color-ivory);
+}
+
+.modalProjectTitle {
+  @apply font-ui mb-4 text-center text-[0.72rem] uppercase tracking-[0.24em];
+  color: color-mix(in srgb, var(--color-ivory) 85%, transparent);
+}
+
+.carouselWrap {
+  @apply relative w-full;
+}
+
+.navPrev {
+  @apply absolute left-0 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full text-2xl text-[var(--color-ivory)] backdrop-blur-sm transition md:-left-2 md:h-14 md:w-14 lg:-left-4;
+  background-color: color-mix(in srgb, var(--color-ivory) 18%, transparent);
+}
+
+.navPrev:hover {
+  background-color: color-mix(in srgb, var(--color-ivory) 28%, transparent);
+}
+
+.navNext {
+  @apply absolute right-0 top-1/2 z-10 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full text-2xl text-[var(--color-ivory)] backdrop-blur-sm transition md:-right-2 md:h-14 md:w-14 lg:-right-4;
+  background-color: color-mix(in srgb, var(--color-ivory) 18%, transparent);
+}
+
+.navNext:hover {
+  background-color: color-mix(in srgb, var(--color-ivory) 28%, transparent);
+}
+
+.slideFrame {
+  @apply flex justify-center overflow-hidden px-12 md:px-16;
+}
+
+.slideMotion {
+  @apply flex max-h-[min(78vh,900px)] w-full max-w-5xl items-center justify-center;
+}
+
+.slideImage {
+  @apply max-h-[min(78vh,900px)] w-full object-contain shadow-2xl;
+}
+
+.counter {
+  @apply font-ui mt-6 text-center text-[0.68rem] font-medium uppercase tracking-[0.28em];
+  color: color-mix(in srgb, var(--color-ivory) 80%, transparent);
+}
+
+.counterSep {
+  @apply mx-2;
+  color: color-mix(in srgb, var(--color-ivory) 45%, transparent);
+}
+
+.thumbsRow {
+  @apply mt-4 flex w-full max-w-xl justify-center px-4 sm:max-w-2xl md:max-w-3xl;
+}
+
+.thumbsTrack {
+  @apply flex max-w-full gap-1.5 overflow-x-auto py-1 [-ms-overflow-style:none] [scrollbar-width:thin] [&::-webkit-scrollbar]:h-1 [&::-webkit-scrollbar-thumb]:rounded-full;
+}
+
+.thumbsTrack::-webkit-scrollbar-thumb {
+  background-color: color-mix(in srgb, var(--color-ivory) 28%, transparent);
+}
+
+.thumb {
+  @apply h-2 shrink-0 rounded-full transition-all duration-300;
+}
+
+.thumbActive {
+  @apply w-8 bg-[var(--color-ivory)];
+}
+
+.thumbInactive {
+  @apply w-2;
+  background-color: color-mix(in srgb, var(--color-ivory) 38%, transparent);
+}
+
+.thumbInactive:hover {
+  background-color: color-mix(in srgb, var(--color-ivory) 58%, transparent);
+}
