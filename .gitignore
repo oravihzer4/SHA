@@ -7,4 +7,3 @@ dist
 
 # Too large for GitHub (use Drive / LFS / release assets instead)
 media/**/*.pdf
-media/**/*.mp4
