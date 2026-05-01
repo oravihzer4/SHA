@@ -83,6 +83,6 @@ export const phraseLockups = urlsForFolder("וריאציות משפט");
 export const logoVariants = urlsForFolder("וריאציות לוגו");
 
 /** Optional topic icons for portfolio tabs (drop these files anywhere under /media). */
-export const residentialTopicIcon = urlForFilename("residentialIcon1.png");
-export const officesTopicIcon = urlForFilename("officesIcon1.png");
-export const commercialTopicIcon = urlForFilename("commercialIcon1.png");
+export const residentialTopicIcon = urlForFilename("Artboard 47@4x-8.png");
+export const officesTopicIcon = urlForFilename("Artboard 54@4x-8.png");
+export const commercialTopicIcon = urlForFilename("Artboard 50@4x-8.png");

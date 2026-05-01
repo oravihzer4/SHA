@@ -27,7 +27,6 @@ export function Testimonials() {
         <Reveal as="div" className={styles.header}>
           <div>
             <p className={styles.eyebrow}>לקוחות מספרים</p>
-            <h2 className={styles.title}>מה הלקוחות אומרים</h2>
           </div>
           <div className={styles.nav}>
             <button
@@ -56,7 +55,10 @@ export function Testimonials() {
               initial={{ opacity: 0, x: reduce ? 0 : 24 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: reduce ? 0 : -24 }}
-              transition={{ duration: reduce ? 0 : 0.45, ease: [0.16, 1, 0.3, 1] }}
+              transition={{
+                duration: reduce ? 0 : 0.45,
+                ease: [0.16, 1, 0.3, 1],
+              }}
               className={styles.blockquote}
             >
               <p className={styles.quote}>“{t.quote}”</p>

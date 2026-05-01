@@ -184,23 +184,23 @@ export function ProjectDetailPage({ projectId }: { projectId: string }) {
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    goPrev();
+                    goNext();
                   }}
                   className={styles.navPrev}
-                  aria-label="תמונה קודמת"
+                  aria-label="תמונה הבאה"
                 >
-                  ‹
+                  ›
                 </button>
                 <button
                   type="button"
                   onClick={(e) => {
                     e.stopPropagation();
-                    goNext();
+                    goPrev();
                   }}
                   className={styles.navNext}
-                  aria-label="תמונה הבאה"
+                  aria-label="תמונה קודמת"
                 >
-                  ›
+                  ‹
                 </button>
 
                 <div className={styles.slideFrame}>

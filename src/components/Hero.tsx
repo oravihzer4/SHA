@@ -6,16 +6,15 @@ import {
   useScroll,
   useTransform,
 } from "framer-motion";
-import { heroBackgroundImages, phraseLockups } from "@/config/assets";
+import { heroBackgroundImages } from "@/config/assets";
 import { logos } from "@/config/branding";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import { Button } from "@/components/Button";
 import { useI18n } from "@/i18n";
 import styles from "./Hero.module.css";
+import heroLogo from "@media/וריאציות אייקון ללא רקע/Artboard 35@4x-8.png";
 
 const HERO_SLIDE_INTERVAL_MS = 7000;
-
-const phraseSrc = phraseLockups[0];
 
 export function Hero() {
   const reduce = useReducedMotion();
@@ -96,14 +95,12 @@ export function Hero() {
           transition={{ duration: 1, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
         >
           <img
-            src={logos.studioLockup}
+            src={heroLogo || logos.studioLockup}
             alt="Studio SHA"
             className={styles.logo}
           />
-          <p className={styles.tagline}>{t("hero.tagline")}</p>
-          {phraseSrc ? (
-            <img src={phraseSrc} alt="" className={styles.phrase} />
-          ) : null}
+          <h1 className={styles.tagline}>{t("hero.tagline")}</h1>
+          <p className={styles.description}>{t("hero.body")}</p>
         </motion.div>
 
         <motion.div

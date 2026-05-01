@@ -6,7 +6,11 @@ import styles from "./Footer.module.css";
 
 const waHref = `https://wa.me/${WHATSAPP_NUMBER}`;
 const socialLinks = [
-  { id: "instagram", label: "אינסטגרם", href: "https://instagram.com" },
+  {
+    id: "instagram",
+    label: "אינסטגרם",
+    href: "https://www.instagram.com/shani_shay_interior_design?igsh=MWIwYW42enF4bjRpMw==",
+  },
   { id: "facebook", label: "פייסבוק", href: "https://facebook.com" },
   { id: "pinterest", label: "פינטרסט", href: "https://pinterest.com" },
 ] as const;

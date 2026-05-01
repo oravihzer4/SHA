@@ -30,10 +30,9 @@ export function Portfolio() {
     <section id="portfolio" className={styles.section}>
       <div className={styles.inner}>
         <Reveal as="div" className={styles.intro}>
-          <p className={styles.eyebrow}>פורטפוליו</p>
           <h2 className={styles.title}>פרויקטים </h2>
           <p className={styles.lead}>
-            בחרו תחום, היכנסו לפרויקט וצפו בכל התמונות הרלוונטיות.
+            בחרו תחום, היכנסו לפרויקט וצפו בגלריית התמונות
           </p>
         </Reveal>
 
@@ -54,15 +53,13 @@ export function Portfolio() {
                 cat.id === selectedCategoryId ? styles.optionBtnActive : ""
               }`}
               onClick={() => setSelectedCategoryId(cat.id)}
+              aria-label={cat.title}
             >
               <span className={styles.optionContent}>
                 {cat.iconSrc ? (
                   <img src={cat.iconSrc} alt="" className={styles.optionIcon} />
                 ) : null}
-                <span className={styles.optionText}>
-                  <span className={styles.optionTitle}>{cat.title}</span>
-                  <span className={styles.optionHint}>צפייה בפרויקטים</span>
-                </span>
+                <span className={styles.optionTitle}>{cat.title}</span>
               </span>
             </button>
           ))}
@@ -85,9 +82,6 @@ export function Portfolio() {
           >
             <div className={styles.categoryHead}>
               <h3 className={styles.categoryTitle}>{selectedCategory.title}</h3>
-              <p className={styles.categoryDescription}>
-                {selectedCategory.description}
-              </p>
             </div>
 
             {selectedCategory.projects.length === 0 ? (
@@ -138,7 +132,6 @@ export function Portfolio() {
           </motion.section>
         </AnimatePresence>
       </div>
-
     </section>
   );
 }

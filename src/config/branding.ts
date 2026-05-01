@@ -9,7 +9,7 @@ export const logos = {
 };
 
 /** Replace with your WhatsApp business number (country code, no +). */
-export const WHATSAPP_NUMBER = "972501234567";
+export const WHATSAPP_NUMBER = "972542184185";
 
 /** Inbox for contact form + site mail links. */
 export const CONTACT_EMAIL = "Shanishayid@gmail.com";

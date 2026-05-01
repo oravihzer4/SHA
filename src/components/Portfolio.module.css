@@ -24,11 +24,11 @@
 }
 
 .options {
-  @apply mb-10 grid gap-3 md:grid-cols-3;
+  @apply mb-12 grid gap-4 md:grid-cols-3;
 }
 
 .optionBtn {
-  @apply border px-4 py-4 text-left transition-all duration-300 md:px-5;
+  @apply aspect-square rounded-md border p-5 text-center transition-all duration-300;
   border-color: color-mix(in srgb, var(--color-espresso) 16%, transparent);
   color: var(--color-espresso);
   background: color-mix(in srgb, var(--color-ivory) 62%, transparent);
@@ -50,12 +50,12 @@
 }
 
 .optionContent {
-  @apply inline-flex items-center gap-3;
+  @apply flex h-full w-full flex-col items-center justify-center gap-3;
 }
 
 .optionIcon {
-  width: 1.45rem;
-  height: 1.45rem;
+  width: clamp(8rem, 21vw, 11.5rem);
+  height: clamp(8rem, 21vw, 11.5rem);
   object-fit: contain;
   opacity: 0.95;
   filter: brightness(0) saturate(100%);
@@ -64,22 +64,9 @@
     opacity 220ms ease;
 }
 
-.optionText {
-  @apply inline-flex flex-col gap-1;
-}
-
 .optionTitle {
-  @apply text-lg leading-none;
+  @apply text-[0.66rem] uppercase tracking-[0.2em] leading-none;
   font-family: var(--font-display);
-}
-
-.optionHint {
-  @apply font-ui text-[0.58rem] uppercase tracking-[0.2em];
-  color: color-mix(in srgb, currentColor 72%, transparent);
-}
-
-.optionBtnActive .optionHint {
-  color: color-mix(in srgb, var(--color-cream) 72%, transparent);
 }
 
 .optionBtnActive .optionIcon {

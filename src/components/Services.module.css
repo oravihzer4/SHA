@@ -32,17 +32,6 @@
   background-color: var(--color-cream);
 }
 
-.iconWrap {
-  @apply mb-6 flex h-14 w-14 items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)];
-}
-.card:hover .iconWrap {
-  transform: scale(1.05);
-}
-
-.icon {
-  @apply max-h-12 w-auto object-contain opacity-90;
-}
-
 .cardTitle {
   @apply mb-3 text-xl text-[var(--color-espresso)];
   font-family: var(--font-display);
@@ -50,20 +39,4 @@
 
 .cardBody {
   @apply text-sm leading-relaxed text-[var(--color-muted)];
-}
-
-.extra {
-  @apply mt-16 border-t border-[var(--color-line)] pt-12;
-}
-
-.extraEyebrow {
-  @apply font-ui mb-6 text-center text-[0.65rem] font-medium uppercase tracking-[0.28em] text-[var(--color-muted)];
-}
-
-.extraIcons {
-  @apply flex flex-wrap items-center justify-center gap-x-10 gap-y-6 opacity-[0.22] grayscale;
-}
-
-.extraIcon {
-  @apply h-10 w-auto object-contain md:h-11;
 }

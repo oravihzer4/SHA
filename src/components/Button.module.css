@@ -1,5 +1,5 @@
 .base {
-  @apply font-ui inline-flex items-center justify-center gap-2 px-8 py-3.5 text-[0.7rem] font-medium uppercase tracking-[0.28em] transition-colors duration-500;
+  @apply font-ui inline-flex items-center justify-center gap-2 rounded-md px-8 py-3.5 text-[0.7rem] font-medium uppercase tracking-[0.28em] transition-colors duration-500;
 }
 
 .primary {

@@ -23,7 +23,7 @@
 
 .masonry {
   column-count: 1;
-  column-gap: 1rem;
+  column-gap: 1.2rem;
 }
 
 .tile {
@@ -99,11 +99,5 @@
 @media (min-width: 700px) {
   .masonry {
     column-count: 2;
-  }
-}
-
-@media (min-width: 1100px) {
-  .masonry {
-    column-count: 3;
   }
 }

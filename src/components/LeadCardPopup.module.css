@@ -30,8 +30,12 @@
 }
 
 .title {
-  @apply mt-2 mb-4 text-xl leading-tight md:text-2xl;
+  @apply mt-2 mb-2 text-xl leading-tight md:text-2xl;
   color: var(--color-espresso);
+}
+
+.description {
+  @apply mb-4 text-sm leading-relaxed text-[var(--color-muted)];
 }
 
 .form {
@@ -59,6 +63,11 @@
 .submit:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+.note {
+  @apply mt-2 block text-[0.66rem] leading-relaxed;
+  color: color-mix(in srgb, var(--color-espresso) 58%, transparent);
 }
 
 .close {

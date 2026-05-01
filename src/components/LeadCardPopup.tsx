@@ -110,8 +110,12 @@ export function LeadCardPopup() {
         <div className={styles.content}>
           <p className={styles.eyebrow}>סטודיו SHA</p>
           <h3 id={`${formId}-title`} className={styles.title}>
-            נשמח לחזור אליכם לשיחה קצרה
+            כל פרויקט טוב מתחיל בתכנון מדויק.
           </h3>
+          <p className={styles.description}>
+            השאירו פרטים ואחזור אליכם לשיחה קצרה שתכוון אתכם נכון כבר מהשלב
+            הראשון.
+          </p>
           <form onSubmit={onSubmit} className={styles.form}>
             <input
               type="text"
@@ -140,6 +144,7 @@ export function LeadCardPopup() {
               {isSending ? "שולח..." : "שליחה"}
             </button>
           </form>
+          <small className={styles.note}>*ייעוץ ראשוני ללא התחייבות</small>
         </div>
       </aside>
     </div>

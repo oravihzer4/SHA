@@ -1,5 +1,5 @@
 .section {
-  @apply relative flex min-h-[100svh] items-end justify-center overflow-hidden bg-[var(--color-espresso)];
+  @apply relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-[var(--color-espresso)];
 }
 
 .bgWrap {
@@ -29,20 +29,25 @@
 }
 
 .content {
-  @apply relative z-10 flex w-full max-w-[1400px] flex-col gap-12 px-6 pb-16 pt-[calc(var(--header-height)+4rem)] md:px-10 md:pb-24;
+  @apply relative z-10 flex min-h-[100svh] w-full max-w-[1400px] flex-col items-center justify-center gap-10 px-6 pb-16 pt-[calc(var(--header-height)+2.5rem)] text-center md:px-10 md:pb-20;
 }
 
 .intro {
-  @apply max-w-3xl;
+  @apply flex max-w-3xl flex-col items-center;
 }
 
 .logo {
-  @apply mb-10 h-auto w-[min(100%,280px)] brightness-0 invert md:w-[320px];
+  @apply mb-7 h-auto w-[min(100%,260px)] brightness-0 invert md:w-[300px];
 }
 
 .tagline {
-  @apply mb-4 text-4xl leading-[1.12] text-[var(--color-cream)] md:text-5xl lg:text-[1.80rem];
+  @apply mb-3 text-4xl leading-[1.12] text-[var(--color-cream)] md:text-5xl lg:text-[1.80rem];
   font-family: var(--font-display);
+}
+
+.description {
+  @apply m-0 max-w-2xl text-base leading-relaxed text-[var(--color-cream)] md:text-lg;
+  opacity: 0.9;
 }
 
 .phrase {
@@ -50,7 +55,7 @@
 }
 
 .actions {
-  @apply flex flex-wrap gap-4;
+  @apply flex flex-wrap items-center justify-center gap-4;
 }
 
 .ctaPrimary {

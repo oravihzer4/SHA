@@ -32,7 +32,7 @@
 }
 
 .title {
-  @apply mb-8 text-4xl text-[var(--color-espresso)] md:text-[2.75rem];
+  @apply mb-8 text-3xl text-[var(--color-espresso)] md:text-[2.25rem] md:whitespace-nowrap lg:text-[2.5rem];
   font-family: var(--font-display);
 }
 

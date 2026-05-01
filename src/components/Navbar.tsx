@@ -39,7 +39,26 @@ export function Navbar() {
 
   const scrollTo = (id: string) => {
     setOpen(false);
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+
+    const smoothScrollWhenReady = (triesLeft = 24) => {
+      const target = document.getElementById(id);
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+        return;
+      }
+      if (triesLeft > 0) {
+        window.requestAnimationFrame(() => smoothScrollWhenReady(triesLeft - 1));
+      }
+    };
+
+    const onProjectRoute = /^#\/project\/.+/.test(window.location.hash);
+    if (onProjectRoute) {
+      window.location.hash = "";
+      window.requestAnimationFrame(() => smoothScrollWhenReady());
+      return;
+    }
+
+    smoothScrollWhenReady();
   };
 
   const logoSrc = solid ? logos.markDark : logos.markLight;

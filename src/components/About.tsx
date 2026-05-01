@@ -1,12 +1,12 @@
-import { profileGallery, brandIcons } from "@/config/assets";
+import { profileGallery } from "@/config/assets";
 import { Reveal } from "@/components/Reveal";
 import { OptimizedImage } from "@/components/OptimizedImage";
 import aboutImage from "@media/aboutImage.jpg";
 import styles from "./About.module.css";
 
-const fallbackPrimary = profileGallery[Math.min(4, profileGallery.length - 1)] ?? "";
+const fallbackPrimary =
+  profileGallery[Math.min(4, profileGallery.length - 1)] ?? "";
 const primary = aboutImage || fallbackPrimary;
-const accentIcon = brandIcons[Math.min(2, brandIcons.length - 1)];
 
 export function About() {
   return (
@@ -21,27 +21,28 @@ export function About() {
                 className={styles.primaryImage}
               />
             ) : null}
-            {accentIcon ? (
-              <img src={accentIcon} alt="" className={styles.accentIcon} />
-            ) : null}
           </div>
         </Reveal>
 
         <Reveal className={styles.colCopy} as="div" delay={0.08}>
           <p className={styles.eyebrow}>סטודיו · שני שי</p>
-          <h2 className={styles.title}>
-            יוקרה מינימליסטית שמרגישה שייכת למקום.
-          </h2>
+          <h2 className={styles.title}>.LOOKS GOOD. WORK EVEN BETTER</h2>
           <div className={styles.body}>
             <p>
-              SHA הוא סטודיו לעיצוב פנים המתמקד בחללים רגועים ועכשוויים —
-              מקום שבו חומריות מדויקת, אור נדיב וירידה לפרטים פוגשים את חיי
-              היומיום.
+              אני מאמינה שעיצוב טוב הוא הרבה מעבר למה שרואים בעין. הוא מתחיל
+              בהבנה עמוקה של האנשים שחיים או עובדים בתוך החלל.
             </p>
             <p>
-              בהובלת שני שי, כל פרויקט נבנה באיפוק ובדיוק: פלטה מאוזנת, נגיעות
-              בהתאמה אישית וריהוט שמרגיש נאסף לאורך זמן ולא "מולבש" בבת אחת.
+              אני שני שי ובסטודיו SHA אני מלווה פרויקטים משלב הרעיון ועד לפרטים
+              הקטנים ביותר, תוך הקפדה על תכנון מדויק, חשיבה יצירתית ותוצאות שלא
+              משאירות מקום לפשרות.
             </p>
+            <p>
+              אני מאמינה בחללות שמבוססות גם על פרקטיקה ולא רק על אסתטיקה. המטרה
+              היא ליצור חלל שמרגיש נכון, מדויק ומאוזן, כזה שישרת אתכם לאורך זמן
+              וישתלב באופן טבעי בחיים שלכם.
+            </p>
+            <p>כשתכנון מדויק מההתחלה - התוצאה מדברת בעד עצמה.</p>
           </div>
         </Reveal>
       </div>

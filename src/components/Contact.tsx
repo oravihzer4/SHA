@@ -2,7 +2,6 @@ import { useRef, useState, type FormEvent } from "react";
 import { motion } from "framer-motion";
 import toast from "react-hot-toast";
 import { CONTACT_EMAIL, WHATSAPP_NUMBER } from "@/config/branding";
-import { brandIcons } from "@/config/assets";
 import { Reveal } from "@/components/Reveal";
 import styles from "./Contact.module.css";
 
@@ -110,16 +109,8 @@ export function Contact() {
     }
   };
 
-  const deco = brandIcons.slice(0, 4);
-
   return (
     <section id="contact" className={styles.section}>
-      <div className={styles.deco}>
-        {deco.map((src) => (
-          <img key={src} src={src} alt="" className={styles.decoIcon} />
-        ))}
-      </div>
-
       <div className={styles.layout}>
         <Reveal className={styles.colIntro} as="div">
           <p className={styles.eyebrow}>צור קשר</p>

@@ -48,10 +48,13 @@ const categoryMeta: Record<
 
 const categoryOrder: PortfolioCategoryId[] = ["residential", "offices", "commercial"];
 
-const rawPortfolio = import.meta.glob("../../media/projectsMedia/**/*.{png,jpg,jpeg}", {
+const rawPortfolio = import.meta.glob(
+  "../../media/projectsMedia/**/*.{png,jpg,jpeg,webp,PNG,JPG,JPEG,WEBP}",
+  {
   eager: true,
   import: "default",
-}) as Record<string, string>;
+},
+) as Record<string, string>;
 
 function toTitleCase(input: string): string {
   return input
@@ -108,11 +111,13 @@ const grouped: Record<PortfolioCategoryId, Record<string, ProjectAccumulator>> =
 };
 
 for (const [path, url] of Object.entries(rawPortfolio)) {
-  const m = path.match(/\/projectsMedia\/(private|offices|commercial)\/([^/]+)\//i);
+  const m = path.match(
+    /\/projectsMedia\/(private|residential|offices|commercial)\/([^/]+)\//i,
+  );
   if (!m) continue;
   const rawCategory = m[1]!.toLowerCase();
   const category =
-    rawCategory === "private"
+    rawCategory === "private" || rawCategory === "residential"
       ? "residential"
       : (rawCategory as Exclude<PortfolioCategoryId, "residential">);
   const projectSlug = m[2]!;
