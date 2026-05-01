@@ -14,6 +14,7 @@ import { WhatsAppPopup } from "@/components/WhatsAppPopup";
 import { CookiePopup } from "@/components/CookiePopup";
 import { LeadCardPopup } from "@/components/LeadCardPopup";
 import { Toaster } from "react-hot-toast";
+import { Analytics } from "@vercel/analytics/react";
 import styles from "./App.module.css";
 
 export default function App() {
@@ -72,6 +73,7 @@ export default function App() {
           },
         }}
       />
+      <Analytics />
     </motion.div>
   );
 }
