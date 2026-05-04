@@ -47,14 +47,27 @@
 }
 
 .mobileMenu {
-  @apply fixed inset-0 z-40 flex flex-col bg-[var(--color-ivory)] px-8 pt-[calc(var(--header-height)+2rem)] md:hidden;
+  @apply fixed inset-0 z-[55] flex min-h-[100dvh] w-screen flex-col px-6 pt-[calc(var(--header-height)+1.5rem)] pb-8 md:hidden;
+  background-color: var(--color-espresso);
+  backdrop-filter: blur(6px);
 }
 
 .mobileLinks {
-  @apply flex flex-col gap-8;
+  @apply mx-auto my-auto flex w-full max-w-md flex-col gap-4;
 }
 
 .mobileLink {
-  @apply text-left text-3xl text-[var(--color-espresso)];
+  @apply w-full rounded-md border px-4 py-3 text-center text-2xl font-medium text-[var(--color-ivory)] transition-colors duration-200;
   font-family: var(--font-display);
+  border-color: color-mix(in srgb, var(--color-ivory) 28%, transparent);
+  background-color: transparent;
+  letter-spacing: 0.01em;
+}
+
+.mobileLink:hover {
+  background-color: transparent;
+}
+
+.mobileLink:active {
+  background-color: transparent;
 }

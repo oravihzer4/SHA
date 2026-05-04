@@ -25,10 +25,13 @@
 
 .options {
   @apply mb-12 grid gap-4 md:grid-cols-3;
+  justify-items: center;
 }
 
 .optionBtn {
-  @apply aspect-square rounded-md border p-5 text-center transition-all duration-300;
+  @apply aspect-square w-full rounded-md border p-5 text-center transition-all duration-300;
+  max-width: 24rem;
+  overflow: hidden;
   border-color: color-mix(in srgb, var(--color-espresso) 16%, transparent);
   color: var(--color-espresso);
   background: color-mix(in srgb, var(--color-ivory) 62%, transparent);
@@ -67,11 +70,34 @@
 .optionTitle {
   @apply text-[0.66rem] uppercase tracking-[0.2em] leading-none;
   font-family: var(--font-display);
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 
 .optionBtnActive .optionIcon {
   /* Negative/inverse look on dark active card */
   filter: brightness(0) invert(1);
+}
+
+@media (max-width: 767px) {
+  .options {
+    grid-template-columns: 1fr;
+  }
+
+  .optionBtn {
+    max-width: min(100%, 20rem);
+    margin-inline: auto;
+  }
+
+  .optionIcon {
+    width: clamp(6.2rem, 32vw, 8.8rem);
+    height: clamp(6.2rem, 32vw, 8.8rem);
+  }
+
+  .optionTitle {
+    letter-spacing: 0.08em;
+    line-height: 1.2;
+  }
 }
 
 .categoryPanel {

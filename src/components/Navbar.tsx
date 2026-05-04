@@ -47,7 +47,9 @@ export function Navbar() {
         return;
       }
       if (triesLeft > 0) {
-        window.requestAnimationFrame(() => smoothScrollWhenReady(triesLeft - 1));
+        window.requestAnimationFrame(() =>
+          smoothScrollWhenReady(triesLeft - 1),
+        );
       }
     };
 
